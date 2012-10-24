@@ -56,3 +56,23 @@ pass2Dest db dest = qsort $ map select $ filter (getDest dest) db
         getDest dest (_,_,_,x,_) = x == dest
         select :: Entry -> PassName
         select (x,_,_,_,_) = x
+
+-- Teil 5
+mostValuedPass :: Database -> PlaceOfDeparture -> Destination -> ([PassName],Airfare)
+mostValuedPass db dep dest
+    | x == maxAirfare = x : mostValuedPass xs
+    | otherwise = mostValuedPass xs
+    where
+        maxAirfare :: Database -> Airfare
+        maxAirfare = max $ map select db
+            where
+                select :: Entry -> Airfare
+                select (_,_,_,_,x) = x
+
+filter (match dep dest (getDepDest)) db
+
+getDepDest :: Entry -> (PlaceOfDeparture,Destination)
+getDepDest (_,_,x,y,_) = (x,y)
+
+match :: PlaceOfDeparture -> Destination -> (PlaceOfDeparture,Destination) -> Bool
+match dep dest (x,y) = (dep == x) && (dest == y)
