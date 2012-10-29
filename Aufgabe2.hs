@@ -1,21 +1,36 @@
--- Teil 1
+------------
+-- Teil 1 --
+------------
 kgv :: Integer -> Integer -> Integer
 kgv = lcm
 
--- Teil 2
+------------
+-- Teil 2 --
+------------
 agv :: Integer -> Integer -> (Integer,Integer) -> [Integer]
 agv 0 _ _ = []
 agv _ 0 _ = []
 agv a b (x,y) = takeWhile (>=x) $ takeWhile (<=y) $ map ((kgv a b)*) [1..]
 
--- Teil 3
+--------------
+-- Database --
+--------------
 type PassName = String
 type FlightNumber = Integer
 type PlaceOfDeparture = String
 type Destination = String
 type Airfare = Integer
-type Entry = (PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare)
-type Database = [Entry]
+type Database = [(PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare)]
+
+data DataSet = DataSet { passName :: PassName
+                       , flightNumber :: FlightNumber
+                       , placeOfDeparture :: PlaceOfDeparture
+                       , destination :: Destination
+                       , airfare :: Airfare
+                       } deriving (Show, Read)
+
+parse :: (PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare) -> DataSet
+parse (a,b,c,d,e) = DataSet a b c d e
 
 db =  [ ("Anton",857,"Vienna","London",237),
         ("Berta",456,"Paris","Berlin",278),
@@ -26,22 +41,9 @@ db =  [ ("Anton",857,"Vienna","London",237),
         ("Berta",857,"Vienna","London",199),
         ("Karla",753,"Vienna","London",237) ]
 
-qtsort :: Ord a => [(a,b)] -> [(a,b)]
-qtsort [] = []
-qtsort (x:xs) = qtsort lesser ++ [x] ++ qtsort greater
-    where
-        lesser = [ a | a <- xs, (fst a) <= (fst x) ]
-        greater = [ a | a <- xs, (fst a) > (fst x) ]
-
-flights :: Database -> PassName -> [(FlightNumber,Airfare)]
-flights db name = qtsort $ map select $ filter (getName name) db
-    where
-        getName :: PassName -> Entry -> Bool
-        getName name (x,_,_,_,_) = x == name
-        select :: Entry -> (FlightNumber,Airfare)
-        select (_,x,_,_,y) = (x,y)
-
--- Teil 4
+------------------------
+-- Sortieralgorithmen --
+------------------------
 qsort :: Ord a => [a] -> [a]
 qsort [] = []
 qsort (x:xs) = qsort lesser ++ [x] ++ qsort greater
@@ -49,24 +51,30 @@ qsort (x:xs) = qsort lesser ++ [x] ++ qsort greater
         lesser = [ a | a <- xs, a <= x ]
         greater = [ a | a <- xs, a > x ]
 
-pass2Dest :: Database -> Destination -> [PassName]
-pass2Dest db dest = qsort $ map select $ filter (getDest dest) db
+qtsort :: Ord a => [(a,b)] -> [(a,b)]
+qtsort [] = []
+qtsort (x:xs) = qtsort lesser ++ [x] ++ qtsort greater
     where
-        getDest :: Destination -> Entry -> Bool
-        getDest dest (_,_,_,x,_) = x == dest
-        select :: Entry -> PassName
-        select (x,_,_,_,_) = x
+        lesser = [ a | a <- xs, (fst a) <= (fst x) ]
+        greater = [ a | a <- xs, (fst a) > (fst x) ]
 
--- Teil 5
---mostValuedPass :: Database -> PlaceOfDeparture -> Destination -> ([PassName],Airfare)
-equals [] [] = True
-equals [] _ = False
-equals _ [] = False
-equals (x:xs) (y:ys)
-	| x == y = equals xs ys
-	| otherwise = False
+------------
+-- Teil 3 --
+------------
+flights :: Database -> PassName -> [(FlightNumber,Airfare)]
+flights db name = qtsort [ (flightNumber x,airfare x) | x <- (map parse db), (passName x) == name ]
 
-mostValuedPass db dep dest = filter (fifth == filter (equals dest . fourth) $ filter (equals dep . third) db
-	where
-		third (_,_,x,_,_) = x
-		fourth (_,_,_,x,_) = x
+------------
+-- Teil 4 --
+------------
+pass2Dest :: Database -> Destination -> [PassName]
+pass2Dest db dest = qsort [ passName x | x <- (map parse db), (destination x) == dest ]
+
+------------
+-- Teil 5 --
+------------
+mostValuedPass :: Database -> PlaceOfDeparture -> Destination -> ([PassName],Airfare)
+mostValuedPass db dep dest = (reverse $ qsort [ passName x | x <- connection, (airfare x) == maxAirfare ],maxAirfare)
+    where
+        connection = [ x | x <- (map parse db), (placeOfDeparture x) == dep, (destination x) == dest ]
+        maxAirfare = foldl (max) 0 [ airfare x | x <- (map parse db), (placeOfDeparture x) == dep, (destination x) == dest ]
