@@ -32,14 +32,14 @@ data DataSet = DataSet { passName :: PassName
 parse :: (PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare) -> DataSet
 parse (a,b,c,d,e) = DataSet a b c d e
 
-db =  [ ("Anton",857,"Vienna","London",237),
-        ("Berta",456,"Paris","Berlin",278),
-        ("Anton",123,"Rome","London",417),
-        ("Anton",109,"London","Berlin",237),
-        ("Karla",888,"Vienna","Rome",350),
-        ("Karla",832,"Rome","London",417),
-        ("Berta",857,"Vienna","London",199),
-        ("Karla",753,"Vienna","London",237) ]
+--db =  [ ("Anton",857,"Vienna","London",237),
+--        ("Berta",456,"Paris","Berlin",278),
+--        ("Anton",123,"Rome","London",417),
+--        ("Anton",109,"London","Berlin",237),
+--        ("Karla",888,"Vienna","Rome",350),
+--        ("Karla",832,"Rome","London",417),
+--        ("Berta",857,"Vienna","London",199),
+--        ("Karla",753,"Vienna","London",237) ]
 
 ------------------------
 -- Sortieralgorithmen --
