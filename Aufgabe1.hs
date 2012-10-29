@@ -1,8 +1,6 @@
 -- Aufgabe1.hs
--- Punkte: 75/100
 
 -- Teil 1
--- Anm.: (-20) Testfälle prüfen kat (n-1) ?!?
 katNumber :: Integer -> Integer
 katNumber 0 = error "Argument ungueltig"
 katNumber x = binom (2*n) n `div` (n+1)
@@ -27,7 +25,6 @@ shrink c (x:xs:xss)
     | otherwise                      = x : (shrink c (xs:xss))
 
 -- Teil 4
--- Anm: (-5) Fall leere Liste vergessen
 stretch :: Char -> Integer -> String -> String
 stretch _ _ [] = ""
 stretch c n (x:[])
