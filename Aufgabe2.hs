@@ -1,6 +1,6 @@
 -- Teil 1
 kgv :: Integer -> Integer -> Integer
-kgv a b = lcm a b
+kgv = lcm
 
 -- Teil 2
 agv :: Integer -> Integer -> (Integer,Integer) -> [Integer]
