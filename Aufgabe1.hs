@@ -1,6 +1,6 @@
--- Aufgabe1.hs
-
--- Teil 1
+------------
+-- Teil 1 --
+------------
 katNumber :: Integer -> Integer
 katNumber 0 = error "Argument ungueltig"
 katNumber x = binom (2*n) n `div` (n+1)
@@ -10,13 +10,17 @@ katNumber x = binom (2*n) n `div` (n+1)
         binom 0 _ = 0
         binom n k = n * binom (n-1) (k-1) `div` k
 
--- Teil 2
+------------
+-- Teil 2 --
+------------
 sumPowers :: Integer -> Integer -> Integer
 sumPowers n k
     | k < 0     = -1
     | otherwise =  sum $ map (^k) [1..n]
 
--- Teil 3
+------------
+-- Teil 3 --
+------------
 shrink :: Char -> String -> String
 shrink c (x:xs:xss)
     | xss == [] && x == c && xs == c = xs:xss
@@ -24,7 +28,9 @@ shrink c (x:xs:xss)
     | x == c && xs == c              = shrink c (xs:xss)
     | otherwise                      = x : (shrink c (xs:xss))
 
--- Teil 4
+------------
+-- Teil 4 --
+------------
 stretch :: Char -> Integer -> String -> String
 stretch _ _ [] = ""
 stretch c n (x:[])
