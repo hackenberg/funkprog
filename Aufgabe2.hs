@@ -14,8 +14,8 @@ type FlightNumber = Integer
 type PlaceOfDeparture = String
 type Destination = String
 type Airfare = Integer
-type Database = [(PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare)]
 type Entry = (PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare)
+type Database = [Entry]
 
 db =  [ ("Anton",857,"Vienna","London",237),
         ("Berta",456,"Paris","Berlin",278),
@@ -58,21 +58,15 @@ pass2Dest db dest = qsort $ map select $ filter (getDest dest) db
         select (x,_,_,_,_) = x
 
 -- Teil 5
-mostValuedPass :: Database -> PlaceOfDeparture -> Destination -> ([PassName],Airfare)
-mostValuedPass db dep dest
-    | x == maxAirfare = x : mostValuedPass xs
-    | otherwise = mostValuedPass xs
-    where
-        maxAirfare :: Database -> Airfare
-        maxAirfare = max $ map select db
-            where
-                select :: Entry -> Airfare
-                select (_,_,_,_,x) = x
+--mostValuedPass :: Database -> PlaceOfDeparture -> Destination -> ([PassName],Airfare)
+equals [] [] = True
+equals [] _ = False
+equals _ [] = False
+equals (x:xs) (y:ys)
+	| x == y = equals xs ys
+	| otherwise = False
 
-filter (match dep dest (getDepDest)) db
-
-getDepDest :: Entry -> (PlaceOfDeparture,Destination)
-getDepDest (_,_,x,y,_) = (x,y)
-
-match :: PlaceOfDeparture -> Destination -> (PlaceOfDeparture,Destination) -> Bool
-match dep dest (x,y) = (dep == x) && (dest == y)
+mostValuedPass db dep dest = filter (fifth == filter (equals dest . fourth) $ filter (equals dep . third) db
+	where
+		third (_,_,x,_,_) = x
+		fourth (_,_,_,x,_) = x
