@@ -8,3 +8,6 @@ cabal-dev
 *.hi
 *.chi
 *.chs.h
+
+*.pdf
+*.out
