@@ -10,6 +10,8 @@
 
 
 
+TODO: 0 -> ""; Funktionen für negative NegaBinarys testen
+
 Zuerst definiert man einige mathematische Hilfsfunktionen:
 	-) div' funktioniert wie div, rundet aber immer zur null hin (verify!!!)
 	-) expand wandelt eine Dezimalzahl in eine negabinäre zahl um
@@ -21,7 +23,7 @@ Zuerst definiert man einige mathematische Hilfsfunktionen:
 >	| otherwise		 = a `div` b
 
 > expand :: Int -> NegaBinary
-> expand n = foldr (++) "" $ reverse . map show $ expand' n
+> expand = foldr (++) "" . reverse . map show . expand'
 > expand' 0 = []
 > expand' n = abs (n `mod` radix) : expand' (n `div'` radix)
 
@@ -30,8 +32,6 @@ Zuerst definiert man einige mathematische Hilfsfunktionen:
 > 	where posVal = map ((-2)^) [0..]
 
 
-
-Teil 1: extract
 
 > extract :: String -> NegaBinary
 > extract [] = []
@@ -43,15 +43,21 @@ Teil 1: extract
 >	| x `elem` ['0','1'] = x : extract xs
 >	| otherwise = extract' xs
 
-Teil 2:
-
 > nbIncr :: NegaBinary -> NegaBinary
 > nbIncr = expand . (+1) . toBase10
 
+> nbDecr :: NegaBinary -> NegaBinary
+> nbDecr = expand . (flip (-) 1) . toBase10
 
+> nbAbs :: NegaBinary -> NegaBinary
+> nbAbs = expand . abs . toBase10
 
-
-
+> nbPlus :: NegaBinary -> NegaBinary -> NegaBinary
+> nbPlus nb "0" = nb
+> nbPlus "0" nb = nb
+> nbPlus nb "" = nb
+> nbPlus "" nb = nb
+> nbPlus nb mb = nbPlus (nbIncr nb) (nbDecr mb)
 
 
 
