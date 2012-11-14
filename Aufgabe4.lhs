@@ -134,7 +134,18 @@ Arithmetik:
 > 			| (isNegative n) && (not (isNegative m)) = (Z,snd n `timesNat` fst m)
 > 			| (not (isNegative n)) && (isNegative m) = (Z,fst n `timesNat` snd m)
 
-divNP :: NatPair -> NatPair -> NatPair
+> divNP :: NatPair -> NatPair -> NatPair
+> divNP n m  = divNP' (mkCan n) (mkCan m)
+> 	where
+> 		divNP' :: NatPair -> NatPair -> NatPair
+> 		divNP' _ (Z,Z) = error "Invalid argument"
+> 		divNP' (Z,Z) _ = (Z,Z)
+> 		divNP' n m
+> 			| (isNegative n) && (isNegative m) = ((snd n) `divNat` (snd m),Z)
+> 			| (not (isNegative n))&&(not (isNegative m)) = ((fst n) `divNat` (fst m),Z)
+> 			| (isNegative n) && (not (isNegative m)) = (Z,snd n `divNat` fst m)
+> 			| (not (isNegative n)) && (isNegative m) = (Z,fst n `divNat` snd m)
+
 modNP :: NatPair -> NatPair -> NatPair
 
 
