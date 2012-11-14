@@ -1,6 +1,6 @@
 Natürliche Zahlen:
 
-> data Nat = Z | S Nat deriving Show
+> data Nat = Z | S Nat deriving (Show, Eq)
 
 toNat ist eine Hilfsfunktion zum debuggen.
 
@@ -43,14 +43,14 @@ zu speichern.
 > 		timesNat' _ Z acc = acc
 > 		timesNat' n k acc = timesNat' n (decr k) (acc `plusNat` n)
 
-> divsNat :: Nat -> Nat -> Nat
-> divsNat _ Z = error "Invalid argument"
-> divsNat Z _ = Z
-> divsNat n k = divsNat' n k Z
+> divNat :: Nat -> Nat -> Nat
+> divNat _ Z = error "Invalid argument"
+> divNat Z _ = Z
+> divNat n k = divNat' n k Z
 > 	where
-> 		divsNat' :: Nat -> Nat -> Nat -> Nat
-> 		divsNat' n k acc
-> 			| n `grEqNat` k = divsNat' (n `minusNat` k) k (incr acc)
+> 		divNat' :: Nat -> Nat -> Nat -> Nat
+> 		divNat' n k acc
+> 			| n `grEqNat` k = divNat' (n `minusNat` k) k (incr acc)
 > 			| otherwise 	= acc
 
 n mod k = r = n - q*k = n - (n/k)*k
@@ -59,7 +59,7 @@ n mod k = r = n - q*k = n - (n/k)*k
 > modNat :: Nat -> Nat -> Nat
 > modNat _ Z = error "Invalid argument"
 > modNat n k = n `minusNat` (q `timesNat` k)
-> 	where q = n `divsNat` k
+> 	where q = n `divNat` k
 
 
 Vergleichsoperationen:
@@ -117,10 +117,10 @@ isNegative liefert True wenn die Zahl ein negatives VZ hat.
 Arithmetik:
 
 > plusNP :: NatPair -> NatPair -> NatPair
-> plusNP (n,m) (k,l) = (n `plusNat` k,m `plusNat` l)
+> plusNP (n,m) (k,l) = mkCan (n `plusNat` k,m `plusNat` l)
 
 > minusNP :: NatPair -> NatPair -> NatPair
-> minusNP (n,m) (k,l) = (n `plusNat` l,m `plusNat` k)
+> minusNP (n,m) (k,l) = mkCan (n `plusNat` l,m `plusNat` k)
 
 > timesNP :: NatPair -> NatPair -> NatPair
 > timesNP (Z,Z) _ = (Z,Z)
@@ -147,7 +147,6 @@ Vergleichsoperationen:
 
 > grNP :: NatPair -> NatPair -> Bool
 > grNP np1 np2
-> -- 	| ((fst np1) `minusNat` (snd np1)) `grNat` ((fst np2) `minusNat` (snd np2)) = True
 > 	| (show . fst . mkCan $ np1 `minusNP` np2) /= "Z" = True -- np1 - np2 = (>0)
 > 	| otherwise = False
 
