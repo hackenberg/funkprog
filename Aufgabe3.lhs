@@ -1,4 +1,5 @@
 > import Data.Char
+> import Data.Bits
 
 > type NegaBinary = String
 
@@ -44,7 +45,17 @@ Zuerst definiert man einige mathematische Hilfsfunktionen:
 >	| otherwise = extract' xs
 
 > nbIncr :: NegaBinary -> NegaBinary
-> nbIncr = expand . (+1) . toBase10
+> --nbIncr = expand . (+1) . toBase10
+> nbIncr nb = nbIncr' nb 0 0
+> nbIncr' :: NegaBinary -> Bool -> Bool -> NegaBinary
+> nbIncr' nb c1 c2
+> 	| last nb == '0' && c1 && c2 = (init nb) ++ "1"
+> 	| last nb == '1' && c1 && c2 =
+> 	| last nb == '0' && c1 && not c2 =
+> 	| last nb == '1' && c1 && not c2 =
+> 	| last nb == '0' && not c1 && c2 =
+> 	| last nb == '1' && not c1 && c2 =
+> 	| otherwise 	 = (nbIncr (init nb) 0) ++ "0"
 
 > nbDecr :: NegaBinary -> NegaBinary
 > nbDecr = expand . (flip (-) 1) . toBase10
@@ -57,7 +68,10 @@ Zuerst definiert man einige mathematische Hilfsfunktionen:
 > nbPlus "0" nb = nb
 > nbPlus nb "" = nb
 > nbPlus "" nb = nb
-> nbPlus nb mb = nbPlus (nbIncr nb) (nbDecr mb)
+> --nbPlus nb mb = nbPlus (nbIncr nb) (nbDecr mb)
+
+ nbPlus a b = nbPlus' a b 0 0
+ 	where nbPlus' a b carry c = 
 
 
 
