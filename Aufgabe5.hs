@@ -1,29 +1,6 @@
 data Tree = Null | Tree Label Tree Tree deriving (Eq,Show)
 type Label = Integer
 
- -- tmap :: (Label -> Label) -> Tree -> Tree
- -- tzw :: (Label -> Label -> Label) -> Tree -> Tree -> Tree
- -- tfold :: (Label -> Label -> Label -> Label) -> Label -> Tree -> Label
-
- -- first we specify the Tree traversals
-
-inorder :: Tree -> [Label]
-inorder Null = []
-inorder (Tree label lc rc) =  (inorder lc) ++ [label] ++ (inorder rc)
-
-preorder :: Tree -> [Label]
-preorder Null = []
-preorder (Tree label lc rc) = [label] ++ (preorder lc) ++ (preorder rc)
-
-postorder :: Tree -> [Label]
-postorder Null = []
-postorder (Tree label lc rc) = [label] ++ (postorder lc) ++ (postorder rc)
-
-isLeaf :: Tree -> Maybe Bool
-isLeaf Null = Nothing
-isLeaf (Tree _ Null Null) = Just True
-isLeaf (Tree _ _ _) = Just False
-
 
 tmap :: (Label -> Label) -> Tree -> Tree
 tmap _ Null = Null
