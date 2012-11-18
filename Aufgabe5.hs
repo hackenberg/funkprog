@@ -1,6 +1,7 @@
+ -- Part 1
+
 data Tree = Null | Tree Label Tree Tree deriving (Eq,Show)
 type Label = Integer
-
 
 tmap :: (Label -> Label) -> Tree -> Tree
 tmap _ Null = Null
@@ -16,6 +17,19 @@ tfold :: (Label -> Label -> Label -> Label) -> Label -> Tree -> Label
 tfold _ v Null = v
 tfold f v (Tree label lc rc) = f label (tfold f v lc) (tfold f v rc)
 
+
+ -- Part 2
+
+type ErdosNumber = Integer
+data Scientist = Sc Initial SurName
+type Initial = Char
+type SurName = String
+type Author = Scientist
+newtype Database = Db [([Author],PaperTitle)]
+type PaperTitle = String
+
+erdosNum :: Database -> Scientist -> ErdosNumber
+erdosNum db s = error "Not Yet Implemented"
 
 
  -- test cases
