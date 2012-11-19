@@ -30,8 +30,10 @@ type PaperTitle = String
 
 erdosNum :: Database -> Scientist -> ErdosNumber
 erdosNum _ (Sc 'P' "Erdos") = 0
---erdosNum db sc = min (map (erdosNum) relevant)
---    where relevant = [ fst x | x <- db, sc `elem` (fst db) ]
+erdosNum db sc
+    | (Sc 'P' "Erdos") `elem` relevant = 1
+    | otherwise = (+1) . minimum $ map erdosNumber relevant
+        where relevant = (foldr (++) [ fst x | x <- db, sc `elem` (fst db) ])
 
 
  -- test cases
