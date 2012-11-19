@@ -29,7 +29,9 @@ newtype Database = Db [([Author],PaperTitle)]
 type PaperTitle = String
 
 erdosNum :: Database -> Scientist -> ErdosNumber
-erdosNum db s = error "Not Yet Implemented"
+erdosNum _ (Sc 'P' "Erdos") = 0
+--erdosNum db sc = min (map (erdosNum) relevant)
+--    where relevant = [ fst x | x <- db, sc `elem` (fst db) ]
 
 
  -- test cases
@@ -41,7 +43,16 @@ t1 = Null
 t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null)
 t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)
 
+db = Db [([Sc 'M' "Smith",Sc 'G' "Martin",Sc 'P' "Erdos"],"Newtonian Forms of Prime Factors"),
+         ([Sc 'P' "Erdos",Sc 'W' "Reisig"],"Stuttering in Petri Nets") ,
+         ([Sc 'M' "Smith",Sc 'X' "Chen"],"First Order Derivates in Structured Programming"),
+         ([Sc 'T' "Jablonski",Sc 'Z' "Hsueh"],"Selfstabilizing Data Structures"),
+         ([Sc 'X' "Chen",Sc 'L' "Li"],"Prime Numbers and Beyond")]
+
+
 main = do
+
+     -- tmap
 
 	putStrLn " -- test cases"
 	putStr "tmap (+1) t1 | "
@@ -54,11 +65,15 @@ main = do
 	putStrLn . show $ tmap (+1) t3 ==
 		Tree 3 (Tree 4 (Tree 6 Null Null) Null) (Tree 8 Null Null)
 
+     -- tzw
+
 	putStr "tzw (+) t1 t2 | "
 	print $ tzw (+) t1 t2 == Null
 
 	putStr "tzw (+) t2 t3 | "
 	print $ tzw (+) t2 t3 == Tree 4 (Tree 6 Null Null) (Tree 12 Null Null)
+
+     -- tfold
 	
 	putStr "tfold f1 0 t1 | "
 	putStrLn . show $ tfold f1 0 t1 == 0
@@ -77,3 +92,12 @@ main = do
 
 	putStr "tfold f2 1 t3 | "
 	putStrLn . show $ tfold f2 1 t3 == 210
+
+     -- erdosNum
+    
+    --putStrLn . show $ erdosNum db (Sc 'P' "Erdos") == 0
+    --putStrLn . show $ erdosNum db (Sc 'M' "Smith") == 1
+    --putStrLn . show $ erdosNum db (Sc 'X' "Chen") == 2
+    --putStrLn . show $ erdosNum db (Sc 'L' "Li") == 3
+    --putStrLn . show $ erdosNum db (Sc 'Z' "Hsueh") == (-1)
+    --putStrLn . show $ erdosNum db (Sc 'K' "Tochterle") == (-1)
