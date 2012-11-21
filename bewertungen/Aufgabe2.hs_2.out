@@ -1,0 +1,50 @@
+Punkte pro Testfall: 4; 0; Maximum: 20 
+
+Testfall: {-1-}(kgv 12 20,kgv (-15) 40,kgv 15 40::Integer) == (60,120,120); Testfall OK 
+Testfall: {-1-}[i::Integer|i<-[1..500],i`mod`3/=0,kgv i 3/=i*3]== []; Testfall OK 
+Testfall: {-1-}[i::Integer|i<-[1..500],(kgv 0 i/=0||kgv i 0/=0)] == []; Testfall OK 
+Testfall: {-1-}[kgv i j::Integer|i<-[1..5],j<-[1..5]] == [1,2,3,4,5,2,2,6,4,10,3,6,3,12,15,4,4,12,4,20,5,10,15,20,5]; Testfall OK 
+Testfall: {-1-}[(i,j)|i<-[1..73],j<-[1..i-1],kgv i j/=kgv j i] == []; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 20
+
+Punkte pro Testfall: 4; 0; Maximum: 20 
+
+Testfall: {-2-}agv 12 20 (50,130) == [60,120]; Testfall OK 
+Testfall: {-2-}agv 15 40 ((-50),150) == [120]; Testfall OK 
+Testfall: {-2-}agv (-15) 20 (60,180) == [60,120,180]; Testfall OK 
+Testfall: {-2-}agv 15 40 (200,10) == []; Testfall OK 
+Testfall: {-2-}agv 17 0 ((-1000),1000) == []; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 20
+
+Punkte pro Testfall: 5; 0; Maximum: 20 
+
+Testfall: {-3-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in flights d "A"==[(109,237),(123,417),(857,237)]; Testfall OK 
+Testfall: {-3-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in flights d "B"==[(456,278),(857,199)]; Testfall OK 
+Testfall: {-3-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in flights d "K"==[(753,237),(832,417),(888,350)]; Testfall OK 
+Testfall: {-3-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in flights d "Be"==[]; Testfall OK 
+
+Testfaelle OK: 4; Testfaelle FALSCH: 0
+Punkte : 20
+
+Punkte pro Testfall: 10; 0; Maximum: 20 
+
+Testfall: {-4-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in pass2Dest d "L"==["A","A","B","K","K"]; Testfall OK 
+Testfall: {-4-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in pass2Dest d "Be"==["A","B"]; Testfall OK 
+
+Testfaelle OK: 2; Testfaelle FALSCH: 0
+Punkte : 20
+
+Punkte pro Testfall: 10; 0; Maximum: 20 
+
+Testfall: {-5-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in mostValuedPass d "V" "L"==(["K","A"],237); Testfall OK 
+Testfall: {-5-}let d=[("A",857,"V","L",237),("B",456,"P","Be",278),("A",123,"R","L",417),("A",109,"L","Be",237),("K",888,"V","R",350),("K",832,"R","L",417),("B",857,"V","L",199),("K",753,"V","L",237)]in mostValuedPass d "P" "Be"==(["B"],278); Testfall OK 
+
+Testfaelle OK: 2; Testfaelle FALSCH: 0
+Punkte : 20
+
+Punkte gesamt: 100
+

@@ -1,0 +1,56 @@
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: (katNumber::(Integer->Integer)) 1 == 1; Testfall OK 
+Testfall: (katNumber::(Integer->Integer)) 2  ; Testfall FALSCH 
+Erwartet: (katNumber::(Integer->Integer)) 2 == 1 
+Ausgabe:  (katNumber::(Integer->Integer)) 2 ==2   
+Testfall: (katNumber::(Integer->Integer)) 3  ; Testfall FALSCH 
+Erwartet: (katNumber::(Integer->Integer)) 3 == 2 
+Ausgabe:  (katNumber::(Integer->Integer)) 3 ==5   
+Testfall: (katNumber::(Integer->Integer)) 4  ; Testfall FALSCH 
+Erwartet: (katNumber::(Integer->Integer)) 4 == 5 
+Ausgabe:  (katNumber::(Integer->Integer)) 4 ==14   
+Testfall: katNumber 10  ; Testfall FALSCH 
+Erwartet: katNumber 10 == 4862 
+Ausgabe:  katNumber 10 ==16796   
+
+Testfaelle OK: 1; Testfaelle FALSCH: 4
+Punkte : 5
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: [sumPowers 100 i|i<-[1,2]] == [5050, 338350]; Testfall OK 
+Testfall: sumPowers 100 0 == 100; Testfall OK 
+Testfall: sumPowers 100 (-5) == (-1); Testfall OK 
+Testfall: [sumPowers 100 i|i<-[3..6]] == [25502500,2050333330,171708332500,14790714119050]; Testfall OK 
+Testfall: take 9[sumPowers j i|j<-[1..50],i<-[3..6]] == [1,1,1,1,9,17,33,65,36]; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 25
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: shrink 'f' "Schifffahrt" == "Schifahrt"; Testfall OK 
+Testfall: shrink 'i' "Schifffahrt" == "Schifffahrt"; Testfall OK 
+Testfall: shrink 'Z' "Schifffahrt" == "Schifffahrt"; Testfall OK 
+Testfall: shrink 'a' "baaCaaadgeaaba" == "baCadgeaba"; Testfall OK 
+Testfall: shrink 'a' "aabaaCaaadgeaaba" == "abaCadgeaba"; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 25
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: stretch 'a' 5 "gaehn" == "gaaaaaehn"; Testfall OK 
+Testfall: stretch 'A' 5 "gaehn" == "gaehn"; Testfall OK 
+Testfall: stretch 'a' (-5) "gaehn" == "gehn"; Testfall OK 
+Testfall: stretch 'a' 2 "baaCaaadgeaaba" == "baaaaCaaaaaadgeaaaabaa"; Testfall OK 
+Testfall: stretch 'a' 2 ""  ; Testfall FALSCH 
+Erwartet: stretch 'a' 2 "" == "" 
+Ausgabe:  stretch 'a' 2 "" =="   
+
+Testfaelle OK: 4; Testfaelle FALSCH: 1
+Punkte : 20
+
+Punkte gesamt: 75
+

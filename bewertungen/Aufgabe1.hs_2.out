@@ -1,0 +1,46 @@
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: (katNumber::(Integer->Integer)) 1 == 1; Testfall OK 
+Testfall: (katNumber::(Integer->Integer)) 2 == 1; Testfall OK 
+Testfall: (katNumber::(Integer->Integer)) 3 == 2; Testfall OK 
+Testfall: (katNumber::(Integer->Integer)) 4 == 5; Testfall OK 
+Testfall: katNumber 10 == 4862; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 25
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: [sumPowers 100 i|i<-[1,2]] == [5050, 338350]; Testfall OK 
+Testfall: sumPowers 100 0 == 100; Testfall OK 
+Testfall: sumPowers 100 (-5) == (-1); Testfall OK 
+Testfall: [sumPowers 100 i|i<-[3..6]] == [25502500,2050333330,171708332500,14790714119050]; Testfall OK 
+Testfall: take 9[sumPowers j i|j<-[1..50],i<-[3..6]] == [1,1,1,1,9,17,33,65,36]; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 25
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: shrink 'f' "Schifffahrt" == "Schifahrt"; Testfall OK 
+Testfall: shrink 'i' "Schifffahrt" == "Schifffahrt"; Testfall OK 
+Testfall: shrink 'Z' "Schifffahrt" == "Schifffahrt"; Testfall OK 
+Testfall: shrink 'a' "baaCaaadgeaaba" == "baCadgeaba"; Testfall OK 
+Testfall: shrink 'a' "aabaaCaaadgeaaba" == "abaCadgeaba"; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 25
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: stretch 'a' 5 "gaehn" == "gaaaaaehn"; Testfall OK 
+Testfall: stretch 'A' 5 "gaehn" == "gaehn"; Testfall OK 
+Testfall: stretch 'a' (-5) "gaehn" == "gehn"; Testfall OK 
+Testfall: stretch 'a' 2 "baaCaaadgeaaba" == "baaaaCaaaaaadgeaaaabaa"; Testfall OK 
+Testfall: stretch 'a' 2 "" == ""; Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 25
+
+Punkte gesamt: 100
+

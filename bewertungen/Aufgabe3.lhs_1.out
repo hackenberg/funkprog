@@ -1,0 +1,101 @@
+Punkte pro Testfall: 2; 0; Maximum: 10 
+
+Testfall: extract "we10iopK11P iU010"  ; Testfall FALSCH 
+Erwartet: extract "we10iopK11P iU010" == "1011010" 
+Ausgabe:  extract "we10iopK11P iU010" ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "extract"   
+Testfall: extract "0w0e010iopK101P iU01B1"  ; Testfall FALSCH 
+Erwartet: extract "0w0e010iopK101P iU01B1" == "10101011" 
+Ausgabe:  extract "0w0e010iopK101P iU01B1" ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "extract"   
+Testfall: extract "aerfweife"  ; Testfall FALSCH 
+Erwartet: extract "aerfweife" == "0" 
+Ausgabe:  extract "aerfweife" ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "extract"   
+Testfall: extract "a0erf00we0ife"  ; Testfall FALSCH 
+Erwartet: extract "a0erf00we0ife" == "0" 
+Ausgabe:  extract "a0erf00we0ife" ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "extract"   
+Testfall: extract "a0erf00w1e0ife"  ; Testfall FALSCH 
+Erwartet: extract "a0erf00w1e0ife" == "10" 
+Ausgabe:  extract "a0erf00w1e0ife" ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "extract"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 5
+Punkte : 0
+
+Punkte pro Testfall: 5; 0; Maximum: 15 
+
+Testfall: [nbIncr i|i<-["110","10","1101","11111","11"]]  ; Testfall FALSCH 
+Erwartet: [nbIncr i|i<-["110","10","1101","11111","11"]] == ["111","11","10","11100","0"] 
+Ausgabe:  [nbIncr i|i<-["110","10","1101","11111","11"]] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbIncr"   
+Testfall: let i=6;b=take(2^i)['1'|_<-[1..]]in (nbIncr(b++"10")) ; Testfall FALSCH 
+Erwartet: let i=6;b=take(2^i)['1'|_<-[1..]]in (nbIncr(b++"10"))==(b++"11") 
+Ausgabe:  let i=6;b=take(2^i)['1'|_<-[1..]]in (nbIncr(b++"10"))ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbIncr"   
+Testfall: (iterate nbIncr "0")!!100  ; Testfall FALSCH 
+Erwartet: (iterate nbIncr "0")!!100 == "110100100" 
+Ausgabe:  (iterate nbIncr "0")!!100 ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbIncr"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 3
+Punkte : 0
+
+Punkte pro Testfall: 5; 0; Maximum: 25 
+
+Testfall: [nbDecr i|i<-["1","1101","1110","11111","110"]]  ; Testfall FALSCH 
+Erwartet: [nbDecr i|i<-["1","1101","1110","11111","110"]] == ["0","1100","1001","11110","1"] 
+Ausgabe:  [nbDecr i|i<-["1","1101","1110","11111","110"]] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbDecr"   
+Testfall: let i=6;b=take(2^i)['1'|_<-[1..]]in (nbDecr(b++"11")) ; Testfall FALSCH 
+Erwartet: let i=6;b=take(2^i)['1'|_<-[1..]]in (nbDecr(b++"11"))==(b++"10") 
+Ausgabe:  let i=6;b=take(2^i)['1'|_<-[1..]]in (nbDecr(b++"11"))ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbDecr"   
+Testfall: let i=8;b=take(2^i)['1'|_<-[1..]]in(nbDecr.nbIncr)b ; Testfall FALSCH 
+Erwartet: let i=8;b=take(2^i)['1'|_<-[1..]]in(nbDecr.nbIncr)b==b 
+Ausgabe:  let i=8;b=take(2^i)['1'|_<-[1..]]in(nbDecr.nbIncr)bERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbIncr"   
+Testfall: let i=8;b=take(2^i)['1'|_<-[1..]]in(nbDecr.nbDecr.nbIncr.nbIncr)b ; Testfall FALSCH 
+Erwartet: let i=8;b=take(2^i)['1'|_<-[1..]]in(nbDecr.nbDecr.nbIncr.nbIncr)b==b 
+Ausgabe:  let i=8;b=take(2^i)['1'|_<-[1..]]in(nbDecr.nbDecr.nbIncr.nbIncr)bERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbIncr"   
+Testfall: [i|i<-["110","10","1101"],iterate nbDecr((iterate nbIncr i)!!90)!!90/=i] ; Testfall FALSCH 
+Erwartet: [i|i<-["110","10","1101"],iterate nbDecr((iterate nbIncr i)!!90)!!90/=i]==[] 
+Ausgabe:  [i|i<-["110","10","1101"],iterate nbDecr((iterate nbIncr i)!!90)!!90/=i]ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbIncr"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 5
+Punkte : 0
+
+Punkte pro Testfall: 5; 0; Maximum: 5 
+
+Testfall: [nbAbs i|i<-["0","11","1111","111","1110"]] ; Testfall FALSCH 
+Erwartet: [nbAbs i|i<-["0","11","1111","111","1110"]]==["0","1","101","111","11010"] 
+Ausgabe:  [nbAbs i|i<-["0","11","1111","111","1110"]]ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbAbs"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 1
+Punkte : 0
+
+Punkte pro Testfall: 5; 0; Maximum: 45 
+
+Testfall: [nbPlus x y|(x,y)<-[("0","1110"),("10101","0"),("110","111"),("10","1100"),("1100","101")]]  ; Testfall FALSCH 
+Erwartet: [nbPlus x y|(x,y)<-[("0","1110"),("10101","0"),("110","111"),("10","1100"),("1100","101")]] == ["1110","10101","101","1110","1"] 
+Ausgabe:  [nbPlus x y|(x,y)<-[("0","1110"),("10101","0"),("110","111"),("10","1100"),("1100","101")]] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbPlus"   
+Testfall: let n=9;p=nbPlus;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y,z)|x<-k,y<-k,z<-k,p x(p y z)/=p(p x y)z]  ; Testfall FALSCH 
+Erwartet: let n=9;p=nbPlus;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y,z)|x<-k,y<-k,z<-k,p x(p y z)/=p(p x y)z] == [] 
+Ausgabe:  let n=9;p=nbPlus;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y,z)|x<-k,y<-k,z<-k,p x(p y z)/=p(p x y)z] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbPlus"   
+Testfall: let n=20;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y)|x<-k,y<-k,nbPlus x y/=nbPlus y x]  ; Testfall FALSCH 
+Erwartet: let n=20;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y)|x<-k,y<-k,nbPlus x y/=nbPlus y x] == [] 
+Ausgabe:  let n=20;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y)|x<-k,y<-k,nbPlus x y/=nbPlus y x] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbPlus"   
+Testfall: let i= 5;b=take(2^i)['1'|_<-[1..]]in nbPlus"0"b ; Testfall FALSCH 
+Erwartet: let i= 5;b=take(2^i)['1'|_<-[1..]]in nbPlus"0"b==b 
+Ausgabe:  let i= 5;b=take(2^i)['1'|_<-[1..]]in nbPlus"0"bERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbPlus"   
+Testfall: [nbTimes x y|(x,y)<-[("0","1110"),("10101","0"),("10","1100"),("110","111"),("110","1101")]]  ; Testfall FALSCH 
+Erwartet: [nbTimes x y|(x,y)<-[("0","1110"),("10101","0"),("10","1100"),("110","111"),("110","1101")]] == ["0","0","11000","11010","1110"] 
+Ausgabe:  [nbTimes x y|(x,y)<-[("0","1110"),("10101","0"),("10","1100"),("110","111"),("110","1101")]] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbTimes"   
+Testfall: let i=10;b=take(2^i)['1'|_<-[1..]]in nbTimes"0" b ; Testfall FALSCH 
+Erwartet: let i=10;b=take(2^i)['1'|_<-[1..]]in nbTimes"0" b=="0" 
+Ausgabe:  let i=10;b=take(2^i)['1'|_<-[1..]]in nbTimes"0" bERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbTimes"   
+Testfall: let n=90;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[x|x<-k,nbTimes "0" x/="0"]  ; Testfall FALSCH 
+Erwartet: let n=90;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[x|x<-k,nbTimes "0" x/="0"] == [] 
+Ausgabe:  let n=90;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[x|x<-k,nbTimes "0" x/="0"] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbTimes"   
+Testfall: let n=30;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[x|x<-k,nbTimes "1" x/=x]  ; Testfall FALSCH 
+Erwartet: let n=30;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[x|x<-k,nbTimes "1" x/=x] == [] 
+Ausgabe:  let n=30;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[x|x<-k,nbTimes "1" x/=x] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbTimes"   
+Testfall: let n=11;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y)|x<-k,y<-k,nbTimes x y/=nbTimes y x]  ; Testfall FALSCH 
+Erwartet: let n=11;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y)|x<-k,y<-k,nbTimes x y/=nbTimes y x] == [] 
+Ausgabe:  let n=11;l="":[c:e|e<-l,c<-"01"];k=take n("0":['1':j|j<-l])in take 5[(x,y)|x<-k,y<-k,nbTimes x y/=nbTimes y x] ERROR "Aufgabe3.lhs/f0925545.lhs":27 - Type error in explicitly typed binding ==ERROR - Undefined variable "nbTimes"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 9
+Punkte : 0
+
+Punkte gesamt: 0
+

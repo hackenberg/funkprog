@@ -1,0 +1,51 @@
+Punkte pro Testfall: 5; 0; Maximum: 15 
+
+Testfall: [[]|S (S (S (S (S Z))))<-[plusNat (S (S Z)) (S (S (S Z)))]] == [[]]; Testfall OK 
+Testfall: [[]|Z<-[minusNat (S (S Z)) (S (S (S Z)))]] == [[]]; Testfall OK 
+Testfall: [[]|S (S (S (S (S (S Z)))))<-[timesNat (S (S Z)) (S (S (S Z)))]] == [[]]; Testfall OK 
+
+Testfaelle OK: 3; Testfaelle FALSCH: 0
+Punkte : 15
+
+Punkte pro Testfall: 5; 0; Maximum: 15 
+
+Testfall: [[]|Z<-[divNat (S (S Z)) (S (S (S Z)))]] == [[]]; Testfall OK 
+Testfall: [[]|S (S Z)<-[modNat (S (S Z)) (S (S (S Z)))]] == [[]]; Testfall OK 
+Testfall: eqNat (S (S Z)) (S (S (S Z))) == False; Testfall OK 
+
+Testfaelle OK: 3; Testfaelle FALSCH: 0
+Punkte : 15
+
+Punkte pro Testfall: 5; 0; Maximum: 20 
+
+Testfall: grNat (S (S Z)) (S (S (S Z))) == False; Testfall OK 
+Testfall: leNat (S (S Z)) (S (S (S Z))) == True; Testfall OK 
+Testfall: grEqNat (S (S Z)) (S (S (S Z))) == False; Testfall OK 
+Testfall: leEqNat (S (S Z)) (S (S (S Z))) == True; Testfall OK 
+
+Testfaelle OK: 4; Testfaelle FALSCH: 0
+Punkte : 20
+
+Punkte pro Testfall: 5; 0; Maximum: 50 
+
+Testfall: [[]|(Z,S Z)<-[mkCan (S (S Z),S (S (S Z)))]] == [[]]; Testfall OK 
+Testfall: [[]|(S Z,Z)<-[plusNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] == [[]]; Testfall OK 
+Testfall: [[]|(Z,S (S (S (S (S Z)))))<-[minusNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] == [[]]; Testfall OK 
+Testfall: [[]|(Z,S (S (S (S (S (S Z))))))<-[timesNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] == [[]]; Testfall OK 
+Testfall: [[]|(Z,S Z)<-[divNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]]  ; Testfall FALSCH 
+Erwartet: [[]|(Z,S Z)<-[divNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] == [[]] 
+Ausgabe:  [[]|(Z,S Z)<-[divNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] ==[]   
+Testfall: [[]|(S Z,Z)<-[modNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]]  ; Testfall FALSCH 
+Erwartet: [[]|(S Z,Z)<-[modNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] == [[]] 
+Ausgabe:  [[]|(S Z,Z)<-[modNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z)]] ==ERROR - Undefined variable "modNP"   
+Testfall: eqNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z) == False; Testfall OK 
+Testfall: grNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z) == False; Testfall OK 
+Testfall: leNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z) == True; Testfall OK 
+Testfall: grEqNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z) == False; Testfall OK 
+Testfall: leEqNP (S Z,S (S (S Z))) (S (S (S (S Z))),S Z) == True; Testfall OK 
+
+Testfaelle OK: 9; Testfaelle FALSCH: 2
+Punkte : 45
+
+Punkte gesamt: 95
+
