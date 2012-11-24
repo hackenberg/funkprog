@@ -11,3 +11,4 @@ cabal-dev
 
 *.pdf
 #*.out
+/nbproject/private/
