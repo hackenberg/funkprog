@@ -13,7 +13,7 @@ toRoman n = b ++ toRoman (n - a)
 	--where (a,b) = head $ filter (\(a,_) -> a <= n) convMap
 
 
- -- TODO conversion map überarbeiten
+ -- TODO conversion map überprüfen
 
 convMap = [ (1000, "M")
 		  , (999, "IM")
@@ -34,57 +34,32 @@ convMap = [ (1000, "M")
 		  , (1, "I") ]
 
 
-
-
-
-
-
-
-
+ -- helper function for debugging purposes
 
 toNat :: Int -> Nat
 toNat n = foldr ($) Z $ replicate n S
 
 
 
+data RatNumbers = Rat Numerator Denominator
+type Numerator = Nat
+type Denominator = Nat
+instance Show RatNumbers where
+    show (Rat n d) = (natToNb n) ++ "/" ++ (natToNb d)
+		where natToNb = toNb . toDecimal
 
+type NegaBinary = String
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---data RatNumbers = Rat Numerator Denominator
---instance Show RatNumbers where
---    show (Rat n d)
-
---type Numerator = Nat
---type Denominator = Nat
---type NegaBinary = String
+toNb :: Integer -> NegaBinary
+toNb 0 = "0"
+toNb n = foldr (++) "" . reverse . map show . toNb' $ n
+toNb' 0 = []
+toNb' n = abs (n `mod` (-2)) : toNb' (n `div'` (-2))
+	where 
+		--div' :: Integral a => a -> a -> a
+		div' a b
+			| a `mod` b == 1 = (a-1) `div` b
+			| otherwise      = a `div` b
 
 --toNegaBinary :: Int -> NegaBinary
 --toNegaBinary = foldr (++) "" . reverse . map show . toNegaBinary'

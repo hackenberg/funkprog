@@ -1,0 +1,56 @@
+Punkte pro Testfall: 9; 0; Maximum: 45 
+
+Testfall: {-1a-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in [tmap (+1)t|t<-[t1,t2,t3]]  ; Testfall FALSCH 
+Erwartet: {-1a-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in [tmap (+1)t|t<-[t1,t2,t3]] == [Null,Tree 3 (Tree 4 Null Null) (Tree 6 Null Null),Tree 3 (Tree 4 (Tree 6 Null Null) Null) (Tree 8 Null Null)] 
+Ausgabe:  {-1a-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in [tmap (+1)t|t<-[t1,t2,t3]] ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Null"   
+Testfall: {-1b-}let s l=Null:[Tree i u v|i<-[0..1],u<-l,v<-l];ts=(s.s.s.s)[];in take 5[t|t<-ts,t/= (tmap(+1).tmap(\x->x-1))t] ; Testfall FALSCH 
+Erwartet: {-1b-}let s l=Null:[Tree i u v|i<-[0..1],u<-l,v<-l];ts=(s.s.s.s)[];in take 5[t|t<-ts,t/= (tmap(+1).tmap(\x->x-1))t]==[] 
+Ausgabe:  {-1b-}let s l=Null:[Tree i u v|i<-[0..1],u<-l,v<-l];ts=(s.s.s.s)[];in take 5[t|t<-ts,t/= (tmap(+1).tmap(\x->x-1))t]ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Tree"   
+Testfall: {-1c-}let s l=Null:[Tree i u v|i<-[0],u<-l,v<-l];ts=(s.s.s.s.s)[];in take 5[t|t<-ts,t/=tzw(\x _->x)t t] ; Testfall FALSCH 
+Erwartet: {-1c-}let s l=Null:[Tree i u v|i<-[0],u<-l,v<-l];ts=(s.s.s.s.s)[];in take 5[t|t<-ts,t/=tzw(\x _->x)t t]==[] 
+Ausgabe:  {-1c-}let s l=Null:[Tree i u v|i<-[0],u<-l,v<-l];ts=(s.s.s.s.s)[];in take 5[t|t<-ts,t/=tzw(\x _->x)t t]ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Tree"   
+Testfall: {-1d-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t1 t2  ; Testfall FALSCH 
+Erwartet: {-1d-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t1 t2 == Null 
+Ausgabe:  {-1d-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t1 t2 ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Null"   
+Testfall: {-1e-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t2 t3  ; Testfall FALSCH 
+Erwartet: {-1e-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t2 t3 == Tree 4 (Tree 6 Null Null) (Tree 12 Null Null) 
+Ausgabe:  {-1e-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t2 t3 ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Null"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 5
+Punkte : 0
+
+Punkte pro Testfall: 9; 0; Maximum: 9 
+
+Testfall: {-1f-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null);f1 = \x y z -> x+y+z;f2 = \x y z -> x*y*z;in [tfold f1 0 t1,tfold f2 1 t1,tfold f1 0 t2, tfold f1 0 t3,tfold f2 1 t2,tfold f2 1 t3]   ; Testfall FALSCH 
+Erwartet: {-1f-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null);f1 = \x y z -> x+y+z;f2 = \x y z -> x*y*z;in [tfold f1 0 t1,tfold f2 1 t1,tfold f1 0 t2, tfold f1 0 t3,tfold f2 1 t2,tfold f2 1 t3]  == [0,1,10,17,30,210] 
+Ausgabe:  {-1f-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null);f1 = \x y z -> x+y+z;f2 = \x y z -> x*y*z;in [tfold f1 0 t1,tfold f2 1 t1,tfold f1 0 t2, tfold f1 0 t3,tfold f2 1 t2,tfold f2 1 t3]  ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Null"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 1
+Punkte : 0
+
+Punkte pro Testfall: 8; 0; Maximum: 46 
+
+Testfall: {-2a-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db e  ; Testfall FALSCH 
+Erwartet: {-2a-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db e == 0 
+Ausgabe:  {-2a-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db e ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Sc"   
+Testfall: {-2b-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c]]  ; Testfall FALSCH 
+Erwartet: {-2b-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c]] == [0,1,2] 
+Ausgabe:  {-2b-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c]] ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Sc"   
+Testfall: {-2c-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[h]]  ; Testfall FALSCH 
+Erwartet: {-2c-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[h]] == [(-1)] 
+Ausgabe:  {-2c-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[h]] ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Sc"   
+Testfall: {-2d-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c,l,h]]  ; Testfall FALSCH 
+Erwartet: {-2d-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c,l,h]] == [0,1,2,3,(-1)] 
+Ausgabe:  {-2d-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c,l,h]] ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Sc"   
+Testfall: {-2e-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db (Sc 'K' "Tochterle")  ; Testfall FALSCH 
+Erwartet: {-2e-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db (Sc 'K' "Tochterle") == (-1) 
+Ausgabe:  {-2e-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db (Sc 'K' "Tochterle") ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Sc"   
+Testfall: {-2f-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[j,r]] ; Testfall FALSCH 
+Erwartet: {-2f-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[j,r]]==[-1,1] 
+Ausgabe:  {-2f-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[j,r]]ERROR "Aufgabe5.hs/f0925545.hs":35 - Undefined variable "erdosNumber" ==ERROR - Undefined data constructor "Sc"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 6
+Punkte : 0
+
+Punkte gesamt: 0
+
