@@ -7,34 +7,18 @@ module Erdos
 , Author
 , PaperTitle
 , erdosNum
-, coAuthors
 , getCoAuthors
 ) where
 
 import Data.List
 
-
 type ErdosNumber = Integer
-data Scientist   = Sc Initial SurName deriving (Eq,Show) -- Eq kann durch eigene Methode ersetzt werden
+data Scientist   = Sc Initial SurName deriving (Eq)
 type Initial     = Char
 type SurName     = String
-newtype Database = Db [( [Author], PaperTitle )] deriving (Show)
+newtype Database = Db [( [Author], PaperTitle )]
 type Author      = Scientist
 type PaperTitle  = String
-
-
-coAuthors :: Author -> Database -> [Author]
-coAuthors _ (Db []) = [] 
-coAuthors a (Db (x:xs))
-    | a `elem` (fst x) = (filter (/=a) $ fst x) ++ (coAuthors a (Db xs))
-    | otherwise        = coAuthors a (Db xs)
-
---coAuthors1 :: Database -> [Author] -> [Author]
---coAuthors1 (Db []) _ = []
---coAuthors1 _ []      = []
---coAuthors1 db (x:xs) = rmDup $ (coAuthors x db) ++ (coAuthors1 db xs)
-
-
 
 
 getCoAuthors :: Database -> [Scientist] -> [Scientist]
@@ -50,32 +34,16 @@ getCoAuthors (Db ((as,t):es)) (s:ss) = cos
         reces = getCoAuthors (Db es) (s:ss)
 
 
-
-
-
-
-
-
-
-
-
 erdosNum :: Database -> Scientist -> ErdosNumber
 erdosNum _ (Sc 'P' "Erdos") = 0  -- Erdos himself
 erdosNum (Db []) _          = -1 -- empty Database; should not happen
 erdosNum db sc              = erdosNum1 db [sc] []
---erdosNum db sc = minimum [ erdosNum db x | x <- (coAuthors sc db) ]
---erdosNum db sc = (minimum (map (erdosNum db) (coAuthors sc db))) +1
 
 erdosNum1 :: Database -> [Scientist] -> [Scientist] -> ErdosNumber
 erdosNum1 db list last
-    | erdos `elem` getCoAuthors db list = 1
+    | (Sc 'P' "Erdos") `elem` coAuthors = 1
     | list == last = -1
     | otherwise = if recursion == -1 then -1 else 1 + recursion
     where
         recursion = erdosNum1 db (nub (list ++ coAuthors)) list
         coAuthors = getCoAuthors db list
---    | otherwise = 1 + (minimum [ erdosNum db x | x <- (coAuthors1 db list) ])
- 
-
-
-erdos = (Sc 'P' "Erdos")
