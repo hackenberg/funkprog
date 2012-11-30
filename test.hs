@@ -60,3 +60,10 @@ main = do
 
 	putStr "tfold f2 1 t3 | "
 	putStrLn . show $ tfold f2 1 t3 == 210
+
+	putStrLn . show $ erdosNum db (Sc 'P' "Erdos")
+	putStrLn . show $ erdosNum db (Sc 'M' "Smith")
+	putStrLn . show $ erdosNum db (Sc 'X' "Chen")
+	putStrLn . show $ erdosNum db (Sc 'L' "Li")
+	putStrLn . show $ erdosNum db (Sc 'Z' "Hsueh")
+	putStrLn . show $ erdosNum db (Sc 'K' "Toechterle")

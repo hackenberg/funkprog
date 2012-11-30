@@ -8,9 +8,7 @@ module Erdos
 , PaperTitle
 , erdosNum
 , coAuthors
-, coAuthors1
 , getCoAuthors
-, rmDup
 ) where
 
 import Data.List
@@ -31,10 +29,10 @@ coAuthors a (Db (x:xs))
     | a `elem` (fst x) = (filter (/=a) $ fst x) ++ (coAuthors a (Db xs))
     | otherwise        = coAuthors a (Db xs)
 
-coAuthors1 :: Database -> [Author] -> [Author]
-coAuthors1 (Db []) _ = []
-coAuthors1 _ []      = []
-coAuthors1 db (x:xs) = rmDup $ (coAuthors x db) ++ (coAuthors1 db xs)
+--coAuthors1 :: Database -> [Author] -> [Author]
+--coAuthors1 (Db []) _ = []
+--coAuthors1 _ []      = []
+--coAuthors1 db (x:xs) = rmDup $ (coAuthors x db) ++ (coAuthors1 db xs)
 
 
 
