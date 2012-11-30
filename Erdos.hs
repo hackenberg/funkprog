@@ -9,19 +9,20 @@ module Erdos
 , erdosNum
 , coAuthors
 , coAuthors1
+, getCoAuthors
 , rmDup
 ) where
 
+import Data.List
+
 
 type ErdosNumber = Integer
-
-data Scientist = Sc Initial SurName deriving (Eq,Show) -- Eq kann durch eigene Methode ersetzt werden
-type Initial = Char
-type SurName = String
-
+data Scientist   = Sc Initial SurName deriving (Eq,Show) -- Eq kann durch eigene Methode ersetzt werden
+type Initial     = Char
+type SurName     = String
 newtype Database = Db [( [Author], PaperTitle )] deriving (Show)
-type Author = Scientist
-type PaperTitle = String
+type Author      = Scientist
+type PaperTitle  = String
 
 
 coAuthors :: Author -> Database -> [Author]
@@ -32,8 +33,32 @@ coAuthors a (Db (x:xs))
 
 coAuthors1 :: Database -> [Author] -> [Author]
 coAuthors1 (Db []) _ = []
-coAuthors1 _ [] = []
+coAuthors1 _ []      = []
 coAuthors1 db (x:xs) = rmDup $ (coAuthors x db) ++ (coAuthors1 db xs)
+
+
+
+
+getCoAuthors :: Database -> [Scientist] -> [Scientist]
+getCoAuthors (Db []) _ = []
+getCoAuthors _ [] = []
+getCoAuthors (Db (([],t):es)) (s:ss) = []
+getCoAuthors (Db ((as,t):es)) (s:ss) = cos
+    where
+        cos = [ sc | sc <- nubbed, sc `notElem` (s:ss) ]
+        nubbed = nub (samecos ++ recss ++ reces)
+        samecos = if s `elem` as then as else []
+        recss = getCoAuthors (Db ((as,t):es)) ss
+        reces = getCoAuthors (Db es) (s:ss)
+
+
+
+
+
+
+
+
+
 
 
 erdosNum :: Database -> Scientist -> ErdosNumber
@@ -45,14 +70,14 @@ erdosNum db sc              = erdosNum1 db [sc]
 
 erdosNum1 :: Database -> [Scientist] -> ErdosNumber
 erdosNum1 db list
-    | erdos `elem` coAuthors1 db list = 1
-    | list == coAuthors1 db list = -1
-    | otherwise = 1 + (minimum [ erdosNum db x | x <- (coAuthors1 db list) ])
+    | erdos `elem` getCoAuthors db list = 1
+    | list == getCoAuthors db list = -1
+    | otherwise = if recursion == -1 then -1 else 1 + recursion
+    where
+        recursion = erdosNum1 db (nub (list ++ coAuthors))
+        coAuthors = getCoAuthors db list
+--    | otherwise = 1 + (minimum [ erdosNum db x | x <- (coAuthors1 db list) ])
  
 
 
 erdos = (Sc 'P' "Erdos")
-
-rmDup :: Eq a => [a] -> [a]
-rmDup [] = []
-rmDup (x:xs) = x : rmDup (filter (\y -> x /= y) xs)
