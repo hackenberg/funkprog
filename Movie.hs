@@ -19,6 +19,8 @@ module Movie
 , get_rtd
 , get_rtg
 , get_tad
+, get_atr
+, upd_dbgri
 ) where
 
 
@@ -31,6 +33,7 @@ type ReleaseDate = Int
 data Genre = Thriller | Fantasy | ScienceFiction | Comedy deriving (Eq,Ord,Show)
 type SalesPrice = Int
 type Database = [Movie]
+
 
  -- get Funktionen
 title :: Movie -> Title
@@ -76,4 +79,19 @@ get_tad :: Database -> ReleaseDate -> [(Title,MainActors,ReleaseDate)]
 get_tad db n = map tad inYear
     where
         inYear = filter ((n==) . year $) db
-        tad  = \(a,b,c,d,e,f) -> (a,c,d)
+        tad    = \(a,b,c,d,e,f) -> (a,c,d)
+
+get_atr :: Database -> Actor -> [(Actor,Title,ReleaseDate)]
+get_atr db s = map atr withActor
+    where
+        withActor = filter ((s `elem`) . actors $) db
+        atr       = \(a,b,c,d,e,f) -> (s,a,d)
+
+upd_dbgri :: Database -> Genre -> Regisseur -> Int -> Database
+upd_dbgri [] _ _ _ = []
+upd_dbgri (x:xs) g r n 
+    | (g == genre x) && (r == regisseur x) = inc : (upd_dbgri xs g r n)
+    | otherwise                            = x : (upd_dbgri xs g r n)
+    where
+        inc = (title x, regisseur x, actors x, year x, genre x, newPrice)
+        newPrice = if ((price x) + n) > 0 then (price x) + n else 1
