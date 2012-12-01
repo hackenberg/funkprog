@@ -1,0 +1,9 @@
+type Movie = (Title,Regisseur,MainActors,ReleaseDate,Genre,SalesPrice)
+type Title = String
+type Regisseur = String
+type Actor = String
+type MainActors = [Actor]
+type ReleaseDate = Int
+type Genre = Thriller | Fantasy | ScienceFiction | Comedy deriving (Eq,Ord,Show)
+type SalesPrice = Int
+type Databse = [Movie]
