@@ -1,7 +1,0 @@
-Name:           funkprog
-Version:        0.0
-Description:    Modules for [VU] Funktionale Programmierung WS2012
-License:        None
-Author:         Lukas Hackenberg
-Build-Type:     Simple
-Cabal-Version:  >=1.2
