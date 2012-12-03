@@ -101,7 +101,7 @@ upd_dbgri :: Database -> Genre -> Regisseur -> Int -> Database
 upd_dbgri [] _ _ _ = []
 upd_dbgri (x:xs) g r n 
     | (g == genre x) && (r == regisseur x) = inc : (upd_dbgri xs g r n)
-    | otherwise                            = x : (upd_dbgri xs g r n)
+    | otherwise = x : (upd_dbgri xs g r n)
     where
         inc = (title x, regisseur x, actors x, year x, genre x, newPrice)
         newPrice = if ((price x) + n) > 0 then (price x) + n else 1
@@ -115,6 +115,11 @@ upd dbad (x:xs) s j | (j <= year x) && (s `elem` actors x) = upd_dbad xs s j
 
  -- Liefere alle Filme, die im Jahr j oder früher erschienen sind und in denen
  -- Schauspieler s nicht unter den Hauptdarstellern war:
+get_dbda :: Database -> ReleaseDate -> Actor -> Database
+get_dbda [] _ _ = []
+get_dbda (x:xs) j s
+    | (j >= year x) && (s `notElem` actors x) = x : (get_dbda xs j s)
+    | otherwise = get_dbda xs j s
 
  -- Sortiere die Datenbank absteigend nach Erscheinungsjahr, d.h. neuere Filme
  -- vor älteren Filmen. Sind in einem Jahr mehrere Filme erschienen, ist die
