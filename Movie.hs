@@ -108,6 +108,10 @@ upd_dbgri (x:xs) g r n
 
  -- Lösche alle Filme, in denen Schauspieler s einer der Hauptdarsteller war
  -- und die im Jahr j oder später erschienen sind:
+upd_dbad :: Database -> Actor -> ReleaseDate -> Database
+upd_dbad [] _ _     = []
+upd dbad (x:xs) s j | (j <= year x) && (s `elem` actors x) = upd_dbad xs s j
+                    | otherwise = x : (upd_dbad xs s j)
 
  -- Liefere alle Filme, die im Jahr j oder früher erschienen sind und in denen
  -- Schauspieler s nicht unter den Hauptdarstellern war:
