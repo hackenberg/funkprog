@@ -21,8 +21,12 @@ module Movie
 , get_tad
 , get_atr
 , upd_dbgri
+, upd_dbad
+, get_dbda
+, sort_dbj
 ) where
 
+import Data.List
 
 type Movie = (Title,Regisseur,MainActors,ReleaseDate,Genre,SalesPrice)
 type Title = String
@@ -125,3 +129,9 @@ get_dbda (x:xs) j s
  -- vor älteren Filmen. Sind in einem Jahr mehrere Filme erschienen, ist die
  -- Reihenfolge unerheblich, in der diese Filme nach der Sortierung aufgeführt
  -- sind:
+sort_dbj :: Database -> Database
+sort_dbj = sortBy (compareMovie)
+    where compareMovie :: Movie -> Movie -> Ordering
+          compareMovie a b | year a < year b = LT
+                           | year a > year b = GT
+                           | otherwise = EQ
