@@ -17,7 +17,6 @@ module Aufgabe5
 
 import Data.List
 
-
  -- Part 1
 
 data Tree = Null | Tree Label Tree Tree deriving (Eq,Show)
@@ -54,13 +53,13 @@ getCoAuthors :: Database -> [Scientist] -> [Scientist]
 getCoAuthors (Db []) _ = []
 getCoAuthors _ [] = []
 getCoAuthors (Db (([],t):es)) (s:ss) = []
-getCoAuthors (Db ((as,t):es)) (s:ss) = cos
+getCoAuthors (Db ((as,t):es)) (s:ss) = coAuthors
     where
-        cos = [ sc | sc <- nubbed, sc `notElem` (s:ss) ]
-        nubbed = nub (samecos ++ recss ++ reces)
-        samecos = if s `elem` as then as else []
-        recss = getCoAuthors (Db ((as,t):es)) ss
-        reces = getCoAuthors (Db es) (s:ss)
+        coAuthors = [ sc | sc <- nubbed, sc `notElem` (s:ss) ]
+        nubbed = nub (sameCoAuthors ++ re ++ cursion)
+        sameCoAuthors = if s `elem` as then as else []
+        re = getCoAuthors (Db ((as,t):es)) ss
+        cursion = getCoAuthors (Db es) (s:ss)
 
 
 erdosNum :: Database -> Scientist -> ErdosNumber
