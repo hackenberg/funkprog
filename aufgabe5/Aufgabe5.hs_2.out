@@ -1,0 +1,32 @@
+Punkte pro Testfall: 9; 0; Maximum: 45 
+
+Testfall: {-1a-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in [tmap (+1)t|t<-[t1,t2,t3]] == [Null,Tree 3 (Tree 4 Null Null) (Tree 6 Null Null),Tree 3 (Tree 4 (Tree 6 Null Null) Null) (Tree 8 Null Null)]; Testfall OK 
+Testfall: {-1b-}let s l=Null:[Tree i u v|i<-[0..1],u<-l,v<-l];ts=(s.s.s.s)[];in take 5[t|t<-ts,t/= (tmap(+1).tmap(\x->x-1))t]==[]; Testfall OK 
+Testfall: {-1c-}let s l=Null:[Tree i u v|i<-[0],u<-l,v<-l];ts=(s.s.s.s.s)[];in take 5[t|t<-ts,t/=tzw(\x _->x)t t]==[]; Testfall OK 
+Testfall: {-1d-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t1 t2 == Null; Testfall OK 
+Testfall: {-1e-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null)in tzw (+) t2 t3 == Tree 4 (Tree 6 Null Null) (Tree 12 Null Null); Testfall OK 
+
+Testfaelle OK: 5; Testfaelle FALSCH: 0
+Punkte : 45
+
+Punkte pro Testfall: 9; 0; Maximum: 9 
+
+Testfall: {-1f-}let t1 = Null;t2 = Tree 2 (Tree 3 Null Null) (Tree 5 Null Null);t3 = Tree 2 (Tree 3 (Tree 5 Null Null) Null) (Tree 7 Null Null);f1 = \x y z -> x+y+z;f2 = \x y z -> x*y*z;in [tfold f1 0 t1,tfold f2 1 t1,tfold f1 0 t2, tfold f1 0 t3,tfold f2 1 t2,tfold f2 1 t3]  == [0,1,10,17,30,210]; Testfall OK 
+
+Testfaelle OK: 1; Testfaelle FALSCH: 0
+Punkte : 9
+
+Punkte pro Testfall: 8; 0; Maximum: 46 
+
+Testfall: {-2a-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db e == 0; Testfall OK 
+Testfall: {-2b-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c]] == [0,1,2]; Testfall OK 
+Testfall: {-2c-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[h]] == [(-1)]; Testfall OK 
+Testfall: {-2d-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[e,s,c,l,h]] == [0,1,2,3,(-1)]; Testfall OK 
+Testfall: {-2e-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in erdosNum db (Sc 'K' "Tochterle") == (-1); Testfall OK 
+Testfall: {-2f-}let c=Sc 'X' "Chen";e=Sc 'P'"Erdos";h=Sc 'Z' "Hsueh";j=Sc 'T'"Jablonski";l=Sc 'L' "Li";m=Sc 'G'"Martin";r=Sc 'W'"Reisig";s=Sc 'M'"Smith";db = Db[([s,m,e],"NF"),([e,r],"SPN"),([s,c],"FODSP"),([j,h],"SDS"),([c,l],"PN")]in [erdosNum db p|p<-[j,r]]==[-1,1]; Testfall OK 
+
+Testfaelle OK: 6; Testfaelle FALSCH: 0
+Punkte : 46
+
+Punkte gesamt: 100
+

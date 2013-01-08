@@ -1,0 +1,63 @@
+Punkte pro Testfall: 0; 0; Maximum: 0 
+
+Testfall: 1==1; Testfall OK 
+
+Testfaelle OK: 1; Testfaelle FALSCH: 0
+Punkte : 0
+
+Punkte pro Testfall: 9; 0; Maximum: 54 
+
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[0..9]] == ["","I","II","III","IV","V","VI","VII","VIII","IX"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[49,99,100,200,600]] == ["IL","IC","C","CC","DC"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[400,299,98,95,19,38,84,89,889]] == ["CD","CCIC","XCVIII","XCV","XIX","XXXVIII","LXXXIV","LXXXIX","DCCCLXXXIX"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[1899,5884]] == ["MDCCCIC","MMMMMDCCCLXXXIV"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[5999]] == ["MMMMMIM"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [i|(i,r)<-zip[10..99]["X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX","XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL","XLI","XLII","XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","IL","L","LI","LII","LIII","LIV","LV","LVI","LVII","LVIII","LIX","LX","LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX","LXXI","LXXII","LXXIII","LXXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX","LXXXI","LXXXII","LXXXIII","LXXXIV","LXXXV","LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC","XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","IC"],r/=show(z!!i)] == []; Testfall OK 
+
+Testfaelle OK: 6; Testfaelle FALSCH: 0
+Punkte : 54
+
+Punkte pro Testfall: 4; 0; Maximum: 46 
+
+Testfall: show (Rat Z (S Z))  ; Testfall FALSCH 
+Erwartet: show (Rat Z (S Z)) == "0/1" 
+Ausgabe:  show (Rat Z (S Z)) =="0/11"   
+Testfall: show (Rat (S (S (S Z))) (S (S (S (S Z)))))  ; Testfall FALSCH 
+Erwartet: show (Rat (S (S (S Z))) (S (S (S (S Z))))) == "111/100" 
+Ausgabe:  show (Rat (S (S (S Z))) (S (S (S (S Z))))) =="1101/1100"   
+Testfall: show (Rat (S (S (S Z))) (S (S (S (S (S (S Z)))))))  ; Testfall FALSCH 
+Erwartet: show (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) == "111/11010" 
+Ausgabe:  show (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) =="1101/1110"   
+Testfall: let z=Z:[S x|x<-z];in [show (Rat (z!!i) (S Z))|i<-[0..4]] ; Testfall FALSCH 
+Erwartet: let z=Z:[S x|x<-z];in [show (Rat (z!!i) (S Z))|i<-[0..4]]==["0/1","1/1","110/1","111/1","100/1"] 
+Ausgabe:  let z=Z:[S x|x<-z];in [show (Rat (z!!i) (S Z))|i<-[0..4]]==["0/11","11/11","10/11","1101/11","1100/11"]   
+Testfall: let z=Z:[S x|x<-z];in [show (Rat (S Z) (z!!i))|i<-[10..14]]  ; Testfall FALSCH 
+Erwartet: let z=Z:[S x|x<-z];in [show (Rat (S Z) (z!!i))|i<-[10..14]] == ["1/11110","1/11111","1/11100","1/11101","1/10010"] 
+Ausgabe:  let z=Z:[S x|x<-z];in [show (Rat (S Z) (z!!i))|i<-[10..14]] ==["11/1010","11/110101","11/110100","11/110111","11/110110"]   
+Testfall: Rat Z (S(S Z))  ; Testfall FALSCH 
+Erwartet: Rat Z (S(S Z)) == Rat Z (S Z) 
+Ausgabe:  Rat Z (S(S Z)) ==0/10   
+Testfall: t2nf (Rat Z (S (S (S Z))))  ; Testfall FALSCH 
+Erwartet: t2nf (Rat Z (S (S (S Z)))) == Rat Z (S Z) 
+Ausgabe:  t2nf (Rat Z (S (S (S Z)))) ==ERROR - Undefined variable "t2nf"   
+Testfall: t2nf (Rat (S (S (S Z))) (S (S (S (S Z)))))  ; Testfall FALSCH 
+Erwartet: t2nf (Rat (S (S (S Z))) (S (S (S (S Z))))) == Rat (S (S (S Z))) (S (S (S (S Z)))) 
+Ausgabe:  t2nf (Rat (S (S (S Z))) (S (S (S (S Z))))) ==ERROR - Undefined variable "t2nf"   
+Testfall: t2nf (Rat (S (S (S Z))) (S (S (S (S (S (S Z)))))))  ; Testfall FALSCH 
+Erwartet: t2nf (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) == Rat (S Z) (S (S Z)) 
+Ausgabe:  t2nf (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) ==ERROR - Undefined variable "t2nf"   
+Testfall: [1|(NP (Z,Z))<-[t2nf (NP (S Z,S Z))]]  ; Testfall FALSCH 
+Erwartet: [1|(NP (Z,Z))<-[t2nf (NP (S Z,S Z))]] == [1] 
+Ausgabe:  [1|(NP (Z,Z))<-[t2nf (NP (S Z,S Z))]] ==ERROR - Undefined data constructor "NP"   
+Testfall: [1|(NP (Z,S Z))<-[t2nf (NP ((S (S Z)),(S (S (S Z)))))]]  ; Testfall FALSCH 
+Erwartet: [1|(NP (Z,S Z))<-[t2nf (NP ((S (S Z)),(S (S (S Z)))))]] == [1] 
+Ausgabe:  [1|(NP (Z,S Z))<-[t2nf (NP ((S (S Z)),(S (S (S Z)))))]] ==ERROR - Undefined data constructor "NP"   
+Testfall: [1|(NP (S Z,Z))<-[t2nf (NP ((S (S (S Z))),(S (S Z))))]]  ; Testfall FALSCH 
+Erwartet: [1|(NP (S Z,Z))<-[t2nf (NP ((S (S (S Z))),(S (S Z))))]] == [1] 
+Ausgabe:  [1|(NP (S Z,Z))<-[t2nf (NP ((S (S (S Z))),(S (S Z))))]] ==ERROR - Undefined data constructor "NP"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 12
+Punkte : 0
+
+Punkte gesamt: 54
+

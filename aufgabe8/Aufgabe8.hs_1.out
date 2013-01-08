@@ -1,0 +1,47 @@
+Punkte pro Testfall: 10; 0; Maximum: 20 
+
+Testfall: ( addRev 11 100, addRev (-196)(-400))   ; Testfall FALSCH 
+Erwartet: ( addRev 11 100, addRev (-196)(-400))  == ( Success (0, 11, "11"), Failure) 
+Ausgabe:  ( addRev 11 100, addRev (-196)(-400))  ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined variable "addRev"   
+Testfall: [i|i<-[1..196],Failure<-[addRev(-i)(-24)]]  ; Testfall FALSCH 
+Erwartet: [i|i<-[1..196],Failure<-[addRev(-i)(-24)]] == [196] 
+Ausgabe:  [i|i<-[1..196],Failure<-[addRev(-i)(-24)]] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined variable "addRev"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 2
+Punkte : 0
+
+Punkte pro Testfall: 15; 0; Maximum: 30 
+
+Testfall: [n|Success (_,n,_)<-[addRev(-i)0|i<-[1..100]]]  ; Testfall FALSCH 
+Erwartet: [n|Success (_,n,_)<-[addRev(-i)0|i<-[1..100]]] == [1,2,3,4,5,6,7,8,9,11,22,33,44,55,66,77,88,99] 
+Ausgabe:  [n|Success (_,n,_)<-[addRev(-i)0|i<-[1..100]]] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined variable "addRev"   
+Testfall: length[n|Success (_,n,_)<-[addRev(-i)0|i<-[100..999]]]  ; Testfall FALSCH 
+Erwartet: length[n|Success (_,n,_)<-[addRev(-i)0|i<-[100..999]]] == 90 
+Ausgabe:  length[n|Success (_,n,_)<-[addRev(-i)0|i<-[100..999]]] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined variable "addRev"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 2
+Punkte : 0
+
+Punkte pro Testfall: 10; 0; Maximum: 50 
+
+Testfall: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=((i+1)`mod`2/=j`mod`2)] ; Testfall FALSCH 
+Erwartet: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=((i+1)`mod`2/=j`mod`2)]==[] 
+Ausgabe:  let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=((i+1)`mod`2/=j`mod`2)]ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined data constructor "Road"   
+Testfall: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldRoute g(show i)(show j)/=[])]  ; Testfall FALSCH 
+Erwartet: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldRoute g(show i)(show j)/=[])] == [] 
+Ausgabe:  let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldRoute g(show i)(show j)/=[])] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined data constructor "Road"   
+Testfall: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldFastestRoute g(show i)(show j)/=NoRoute)]  ; Testfall FALSCH 
+Erwartet: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldFastestRoute g(show i)(show j)/=NoRoute)] == [] 
+Ausgabe:  let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldFastestRoute g(show i)(show j)/=NoRoute)] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined data constructor "Road"   
+Testfall: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=isFeelGoodRoute g(show i)(show j)m]  ; Testfall FALSCH 
+Erwartet: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=isFeelGoodRoute g(show i)(show j)m] == [] 
+Ausgabe:  let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=isFeelGoodRoute g(show i)(show j)m] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined data constructor "Road"   
+Testfall: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldFeelGoodRoute g(show i)(show j)m/=NoRoute)]  ; Testfall FALSCH 
+Erwartet: let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldFeelGoodRoute g(show i)(show j)m/=NoRoute)] == [] 
+Ausgabe:  let m=7;r=[1..m];g=[Road(show i)(show j)1|i<-r,j<-[i+2],j<=m]in[(i,j)|i<-r,j<-r,i/=j,isRoute g(show i)(show j)/=(yieldFeelGoodRoute g(show i)(show j)m/=NoRoute)] ERROR "Aufgabe8.hs/f0925545.hs":1 - Syntax error in declaration (unexpected symbol "Aufgabe8.hs") ==ERROR - Undefined data constructor "Road"   
+
+Testfaelle OK: 0; Testfaelle FALSCH: 5
+Punkte : 0
+
+Punkte gesamt: 0
+

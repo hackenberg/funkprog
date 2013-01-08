@@ -86,7 +86,7 @@ upd_dbgri (x:xs) g r n
  -- und die im Jahr j oder später erschienen sind:
 upd_dbad :: Database -> Actor -> ReleaseDate -> Database
 upd_dbad [] _ _     = []
-upd dbad (x:xs) s j | (j <= year x) && (s `elem` actors x) = upd_dbad xs s j
+upd_dbad (x:xs) s j | (j <= year x) && (s `elem` actors x) = upd_dbad xs s j
                     | otherwise = x : (upd_dbad xs s j)
 
  -- Liefere alle Filme, die im Jahr j oder früher erschienen sind und in denen
@@ -107,3 +107,9 @@ sort_dbj = sortBy (compareMovie)
           compareMovie a b | year a < year b = LT
                            | year a > year b = GT
                            | otherwise = EQ
+
+type ListOfValues = [Integer]
+type TargetValue = Integer
+type Game = (ListOfValues, TargetValue)
+data Operators = Plus | Times | Minus | Div deriving (Eq,Ord,Show)
+type Solution = [Operators]

@@ -14,7 +14,6 @@ isPalindrome n = if k == reverse k then True else False
 rev :: Integer -> Integer
 rev n = read $ reverse . show $ n :: Integer
 -- :: Integer nur wichtig wenn keine Typsignatur verwendet wird
--- lies: read from $ to :: as Integer
 
 addRev :: InitialValue -> MaxRounds -> Solution
 addRev init max = add (abs init) (abs max) 0
@@ -34,5 +33,3 @@ data Connection = Air Country Country TravelTime
                 | Road Country Country TravelTime deriving (Eq,Ord,Show)
 type Connections = [Connection]
 data Itinerary = NoRoute | Route (Connections,TravelTime) deriving (Eq,Ord,Show)
-
-
